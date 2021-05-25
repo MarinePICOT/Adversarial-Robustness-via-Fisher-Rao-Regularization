@@ -2,7 +2,6 @@
 sbatch --job-name=training \
   --gres=gpu:4 \
   --cpus-per-task=15 \
-  --hint=nomultithread \
   --time=20:00:00 \
   --output=jobinfo/test_%j.out \
   --error=jobinfo/test_%j.err \
