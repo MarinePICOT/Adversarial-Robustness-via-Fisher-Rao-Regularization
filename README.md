@@ -1,1 +1,1 @@
-# Adversarial-Robustness-via-Fisher-Rao-Regularization
+# Adversarial Robustness via Fisher Rao Regularization
