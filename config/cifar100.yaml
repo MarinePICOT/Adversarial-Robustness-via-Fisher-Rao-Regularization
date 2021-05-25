@@ -1,0 +1,69 @@
+DATA:
+  data_name: cifar100
+  data_dir: data
+  workers: 4
+
+LOGS:
+  res_dir: results
+
+
+TRAIN:
+  data_aug: True
+  batch_size: 256
+  epochs: 100
+  weight_decay: 0.0005
+  lr: 0.1
+  momentum: 0.9
+  log_interval: 10
+  seed: 1
+  debug: False
+  model_dir: model_ckpt/
+  pretrain: False
+  aux_data_filename: None
+  svhn_extra: False
+  remove_pseudo_labels: False
+  aux_take_amount: -1
+  unsup_fraction : 0.5
+  lr_schedule: 'cosine'
+  entropy_weight: 0
+  unlabeled: False
+  nesterov: True
+  eval_freq: 1
+
+TEST:
+  val_batch_size: 500
+  eval_pgd_steps: 10
+  individual: False
+  n_ex: 10000
+  test_filename: 'wrn-34-10-1.pt'
+
+
+MODEL:
+  save_freq: 1
+  arch: wrn-34-10
+
+PGD:
+  random_init: True
+  epsilon: 0.031
+  perturb_steps: 10
+  step_size: 0.007
+  distance: 'Linf'
+  eps: 0.000000000001
+
+APGD:
+  n_restarts: 1
+  eot_iter: 1
+  rho: .75
+  verbose: False
+  device: 'cuda'
+
+
+RAO:
+  beta: 20.0
+
+DISTRIBUTED:
+  gpus: [0,1]
+
+
+
+
