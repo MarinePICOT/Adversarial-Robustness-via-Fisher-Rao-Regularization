@@ -17,7 +17,7 @@ from tqdm import tqdm
 
 from .utils import load_cfg_from_cfg_file, merge_cfg_from_list, get_model
 
-from .losses import trades_loss, noise_loss
+from .losses import fire_loss, noise_loss
 from .attacks.attack_pgd import pgd
 
 from .attacks.autoattack import AutoAttack
@@ -64,7 +64,7 @@ def train(args, model, device, train_loader, optimizer, epoch):
         optimizer.zero_grad()
 
         # calculate robust loss
-        loss, natural_loss, robust_loss, entropy_loss_unlabeled = trades_loss(args,
+        loss, natural_loss, robust_loss, entropy_loss_unlabeled = fire_loss(args,
                 model=model,
                 x_natural=data,
                 y=target,
