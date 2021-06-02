@@ -20,7 +20,7 @@ def entropy_loss(unlabeled_logits):
         dim=1).mean(dim=0)
 
 
-def trades_loss(args,model,
+def fire_loss(args,model,
                 x_natural,
                 y,
                 optimizer,
@@ -32,9 +32,7 @@ def trades_loss(args,model,
                 adversarial=True,
                 distance='Linf',
                 entropy_weight=0):
-  """The TRADES KL-robustness regularization term proposed by
-       Zhang et al., with added support for stability training and entropy
-       regularization"""
+    
   if beta == 0:
     logits = model(x_natural)
     loss = F.cross_entropy(logits, y)
@@ -57,8 +55,7 @@ def trades_loss(args,model,
     
   
   else :
-    # define KL-loss
-#    criterion_kl = nn.KLDivLoss(reduction='sum')
+
     model.eval()  # moving to eval mode to freeze batchnorm stats
     batch_size = len(x_natural)
     # generate adversarial example
