@@ -181,7 +181,10 @@ def main():
     model = get_model(args.arch, num_classes=dataset.num_classes,
                       normalize_input=False)
     if use_cuda:
-        model = torch.nn.DataParallel(model).cuda()
+        if data_name == "mnist" :
+            model = model.cuda()
+        else : 
+            model = torch.nn.DataParallel(model).cuda()
     save_dir = join(args.model_dir, args.data_name)
     state_dict = torch.load(join(save_dir, args.test_filename))
 
