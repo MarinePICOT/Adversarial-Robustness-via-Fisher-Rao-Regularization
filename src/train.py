@@ -261,7 +261,10 @@ def main():
     model = get_model(args.arch, num_classes=dataset.num_classes,
                       normalize_input=False)
     if use_cuda:
-        model = torch.nn.DataParallel(model).cuda()
+        if data_name=='mnist':
+            model = model.cuda()
+        else :
+            model = torch.nn.DataParallel(model).cuda()
     optimizer = optim.SGD(model.parameters(), lr=args.lr,
                           momentum=args.momentum,
                           weight_decay=args.weight_decay,
@@ -318,7 +321,7 @@ def main():
                 os.remove(join(save_dir, f'optimizer-{epoch-args.save_freq}.pt'))
 
 
-    # Test AutoAttack on last model
+    # Test AutoAttack at the end of training
                         
     log_path_last = os.path.join(args.model_dir,'log_last_{}.txt'.format(args.unsup_fraction))
     adversary = AutoAttack(args, model, norm='Linf', eps=args.epsilon, log_path=log_path_last,version='standard',device=args.device)
@@ -347,7 +350,7 @@ def main():
     loss,robust_accuracy,robust_clean_accuracy = eval(args, model, device, 'test', test_loader)
                         
                         
-    print('Model Last : epoch : {}, Clean Accuracy : {}, Adversarial Accuracy : {} '.format(epoch, robust_clean_accuracy, robust_accuracy) )
+    print('Epoch : {}, Clean Accuracy : {}, Adversarial Accuracy : {} '.format(epoch, robust_clean_accuracy, robust_accuracy) )
 
 # ------------------------------------------------------------------------------
 
