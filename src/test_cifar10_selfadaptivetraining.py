@@ -82,7 +82,7 @@ parser.add_argument('--print-freq', '-p', default=20, type=int,
                     metavar='N', help='print frequency (default: 50)')
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                     help='evaluate model on validation set')
-parser.add_argument('--save-dir', dest='save_dir',
+parser.add_argument('--model-dir', dest='save_dir',
                     help='The directory used to save the trained models',
                     default='save_temp', type=str)
 parser.add_argument('--save-freq', default=1, type=int,
@@ -95,7 +95,7 @@ args = parser.parse_args()
 
 
 # settings
-save_dir = args.save_dir
+save_dir = os.path.join(args.save_dir, args.dataset)
 if not os.path.exists(save_dir):
     os.makedirs(save_dir)
 use_cuda = True
