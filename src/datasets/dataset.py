@@ -285,23 +285,7 @@ class CIFAR100(DataSet):
 
 
 class MNIST(DataSet):
-    """
-    CIFAR-10 dataset [Kri09]_.
-    A dataset with 50k training images and 10k testing images, with the
-    following classes:
-    * Airplane
-    * Automobile
-    * Bird
-    * Cat
-    * Deer
-    * Dog
-    * Frog
-    * Horse
-    * Ship
-    * Truck
-    .. [Kri09] Krizhevsky, A (2009). Learning Multiple Layers of Features
-        from Tiny Images. Technical Report.
-    """
+    
     def __init__(self, data_path='/tmp/', **kwargs):
         """
         """
