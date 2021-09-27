@@ -41,7 +41,7 @@ TEST:
 
 MODEL:
   save_freq: 1
-  arch: small_cnn
+  arch: cnn
 
 PGD:
   random_init: True
